@@ -176,7 +176,7 @@ pub trait IntoRgba {
                     let rgba_idx = self.rgba_idx(idx);
                     let channel_idx = rgba_idx * 4 + offset;
                     if channel_idx > rgba.capacity() {
-                        rgba[channel_idx] = *byte;
+                        rgba[channel_idx] = byte;
                         idx += 1;
                     }
                 }

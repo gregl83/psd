@@ -123,7 +123,11 @@ pub trait IntoRgba {
 
                 for (idx, byte) in channel_bytes.iter().enumerate() {
                     let rgba_idx = self.rgba_idx(idx);
-                    rgba[rgba_idx * 4 + offset] = *byte;
+                    let channel_idx = rgba_idx * 4 + offset;
+                    if channel_idx > rgba.capacity() {
+                        break;
+                    }
+                    rgba[channel_idx] = *byte;
                 }
             }
             // https://en.wikipedia.org/wiki/PackBits
